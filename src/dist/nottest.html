@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>nottest</title>
+		<style>
+body {
+  background: #000;
+  color:      yellow;
+}
+
+#edit {
+	position: absolute;
+	bottom:  0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+	align-content:   flex-start;
+	--background: #40455288;
+	--width: 120px;
+}
+
+#edit input {
+	border: none;
+	height: 12px;
+	min-width: var(--width);
+	max-width: var(--width);
+	font-size: 8px;
+    color: yellow;
+	background: var(--background);
+}
+
+#edit textarea {
+	border: none;
+	margin: 0;
+	padding: 0;
+	color: yellow;
+	background: var(--background);
+
+	height: 12px;
+	width: var(--width);
+	font-size: 3px;
+
+	resize: none;
+}
+
+#edit textarea::after {
+	content: 'words';
+	color: yellow;
+}
+
+#edit textarea:focus {
+	height:   400px;
+	width:    400px;
+	font-size: 12px;
+
+	position: absolute;
+	right: -420px;
+	top:   -420px;
+
+	transition: all 0.3s;
+}
+		</style>
+	</head>
+	<body>
+		<script>
+console.log('works');
+		</script>
+	</body>
+</html>

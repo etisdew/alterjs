@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>test</title>
+		<style>
+body {
+  background: #001;
+  color:      yellow;
+}
+
+#edit {
+	position: absolute;
+	top:  16px;
+	left: 16px;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-content:   center;
+	--background: #40455288;
+	--width: 120px;
+}
+
+#edit input {
+	border: none;
+	height: 12px;
+	min-width: var(--width);
+	max-width: var(--width);
+	font-size: 8px;
+        color: yellow;
+	background: var(--background);
+}
+
+#edit textarea {
+	border: none;
+	margin: 0;
+	padding: 0;
+	color: yellow;
+	background: var(--background);
+
+	height: 36px;
+	width: var(--width);
+	font-size: 3px;
+
+	resize: none;
+}
+
+.label {
+        text-align: center;
+}
+
+#edit textarea:focus {
+	bottom: -400px;
+	height:   400px;
+	width:    400px;
+	font-size: 12px;
+
+	position: absolute;
+	transition: all 0.3s;
+}
+		</style>
+	</head>
+	<body>
+		<script>
+console.log('works');
+		</script>
+	</body>
+</html>
