@@ -1,7 +1,7 @@
 ```json
 "dependencies": {
-    "express": "^4.16.4",
-    "helmet": "^3.15.1"
+    "express": "^4",
+    "helmet": "^3"
 }
 ```
 ## Commands
