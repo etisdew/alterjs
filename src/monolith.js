@@ -1,17 +1,20 @@
 const fs = require('fs');
 const path = require('path');
+
 const Log = require('./log.js');
 
-// Composing the arguments this way allows full inspection of the expected parameters.
 class Monolith {
-	constructor(props = {
-		filepath: null,
-		title: null,
-		head: null,
-		style: null,
-		body: null,
-		script: null
-	}, init = false, withFS = false) {
+	constructor(
+		props = {
+			filepath: null,
+			title: null,
+			head: null,
+			style: null,
+			body: null,
+			script: null
+		}, 
+		init = false, 
+		withFS = false) {
 		let {
 			filepath = __dirname,
 			title = '',
@@ -26,10 +29,11 @@ class Monolith {
 		this.style = style;
 		this.body = body;
 		this.script = script;
-		// If we are supplied fs this instance will beable to read/write
+		
 		if (withFS) {
 			this.check = (filepath) => {
 				try { fs.accessSync(filepath, fs.F_OK); }
+				// allow a failure
 				catch (e) { return false; };
 				return true;
 			};
@@ -38,11 +42,13 @@ class Monolith {
 				if (typeof this.payload === 'string') { fs.writeFileSync(outputPath, this.payload); Log(`Exported ${outputPath}`, 'cyan'); }
 				else { Log('Please invoke init before attempting to write to file.', 'red'); };
 			};
-			this.read = (filepath, key, refresh = false, append = true, encoding = 'utf8') => {
+			this.read = (filepath, key, append = true, refresh = false, encoding = 'utf8') => {
 				if (this.check(filepath)) {
 					let data = fs.readFileSync(filepath, encoding);
+					
 					if (!key) { return data; }
 					else { this.reassign({ [key]: data }, append, refresh); };
+
 					Log(`Imported ${filepath}`, 'cyan');
 				} else { Log(`Unable to read ${filepath}`, 'red'); };
 			};
@@ -51,8 +57,8 @@ class Monolith {
 	};
 
 	initToHTML() {
-		this.payload = (
-			`<!DOCTYPE html>
+		this.payload = (		
+`<!DOCTYPE html>
 <html>
 	<head>
 		<title>${this.title}</title>${
@@ -66,18 +72,18 @@ class Monolith {
 			!!this.script ? `\n\t\t<script>\n${this.script.trim()}\n\t\t</script>` : ''}
 	</body>
 </html>
-`	);
+`		);
 	};
 
-	// The bird part of the code.
-	reassign(props = {
-		filepath: null,
-		title: null,
-		head: null,
-		style: null,
-		body: null,
-		script: null,
-	}, append = false,
+	reassign(
+		props = {
+			filepath: null,
+			title: null,
+			head: null,
+			style: null,
+			body: null,
+			script: null,
+		}, append = false,
 		initToHTML = true) {
 		const ownedProps = Object.keys(props);
 		for (let ownedKey = 0; ownedKey < ownedProps.length; ownedKey++) {
