@@ -15,6 +15,4 @@
 
 > Base64 encoding is very unstable right now, and performance goes out the window. Please avoid it for now. Also be sure to provide your own cert in the future but I have provided an example to start you off.
 
-> This can be used in several ways, creating hot updatable routes, sharing buffers, meta programming, contacting daemons, aggrigating and scrapping, archival, security footprint minimization, do you.
-
-I only want attribution if you do a copy paste job, but frankly this is a boiler plate at one way to use a server and a file system to update and distribute code without having to use a filesystem or database if you dont want to. Splitting your writable and virtual by passing dependencies as constructor parameters can allow this to be run in the browser aswell. The line is blurry on what is in the implimentation and what is in the content, the css for #edit is one such artifact, need to inline the styles but many psuedo selectors, allows update to the editor coming from alter.js. 
+> This can be used in several ways, creating hot updatable routes, sharing buffers, meta programming, contacting daemons, aggrigating and scrapping, archival, security footprint minimization, do you. Also it is within my belief and attitude that lines of code - like words, are only a way of speaking to our computers - repeat what I'v already said if you want, but this is unsafe and not to be used in production.
