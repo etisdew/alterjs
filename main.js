@@ -11,6 +11,7 @@ const {
 } = require("./src/index.js");
 
 const ports = { http_port: 3000, https_port: 3443 };
+// This is a file pointer for all intents and purposes, if you dont need it, dont use it
 const FP_MONOLITH = new Monolith(
   {
     filepath: `${__dirname}`,
@@ -21,8 +22,7 @@ const FP_MONOLITH = new Monolith(
   true
 );
 
-// Duplicate, needs a higher level abstraction
-const VIRTUAL_MONOLITH = new Monolith(FP_MONOLITH, true);
+const VIRTUAL_MONOLITH = new Monolith(FP_MONOLITH);
 VIRTUAL_MONOLITH.reassign({ body: alter(VIRTUAL_MONOLITH) }, true, true);
 
 const theDance = (req, res) => {

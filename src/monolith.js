@@ -13,7 +13,7 @@ class Monolith {
 			body: null,
 			script: null
 		}, 
-		init = false, 
+		init = true, 
 		withFS = false) {
 		let {
 			filepath = __dirname,
