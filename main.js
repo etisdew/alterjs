@@ -15,8 +15,9 @@ const ports = { http_port: 3000, https_port: 3443 };
 const FP_MONOLITH = new Monolith(
   {
     filepath: `${__dirname}`,
-    title: "test", // rememberable name
-    ...sacrifice(path.join(__dirname, "src", "dist", "new.html")) // We are dismantling a file to create a new working copy
+    title: "test", // -o {2}
+    // We are dismantling a file to create a new working copy
+    ...sacrifice(path.join(__dirname, "src", "dist", "test.html")) // {1}
   },
   true,
   true
@@ -26,9 +27,12 @@ const VIRTUAL_MONOLITH = new Monolith(FP_MONOLITH);
 VIRTUAL_MONOLITH.reassign({ body: alter(VIRTUAL_MONOLITH) }, true, true);
 
 const theDance = (req, res) => {
-  // This is a light verification of form data, title influences file name right now
-  if (/^[a-z]+$/gi.test(req.body.title)) {
-
+  // This is a light verification of form data, title influences file name
+  if (!(/^[a-z_]+$/gi.test(req.body.title))) {
+    log("You may only assign an alphabetic path/filename.", "red");
+    // I dont like users so I reply or I don't.
+    res.status(200).send(VIRTUAL_MONOLITH.payload);
+  } else {
     VIRTUAL_MONOLITH.reassign(req.body);
     // Replace the body and init for retemplating <default behavior>
     FP_MONOLITH.reassign(req.body);
@@ -36,11 +40,7 @@ const theDance = (req, res) => {
     FP_MONOLITH.write();
     // alter is only called once, to append itself within itself
     VIRTUAL_MONOLITH.reassign({ body: alter(VIRTUAL_MONOLITH) }, true);
-    // I dont like users so I reply or I don't.
     res.status(200).send(VIRTUAL_MONOLITH.payload);
-  } else {
-    log("You may only assign an alphabetic path/filename.", "red");
-    res.end();
   }
 };
 
